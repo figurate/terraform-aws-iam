@@ -17,7 +17,7 @@ No requirements.
 | path | The path applied to the IAM role | `string` | `"/"` | no |
 | policies | A list of IAM policy ARNs to attach to the role | `list(string)` | `[]` | no |
 | principal | Identifier for the role principal | `any` | n/a | yes |
-| principals | A map of commonly used role principals | `map(list(string))` | <pre>{<br>  "application-autoscaling": [<br>    "application-autoscaling.amazonaws.com",<br>    "Service"<br>  ],<br>  "cloudformation": [<br>    "cloudformation.amazonaws.com",<br>    "Service"<br>  ]<br>}</pre> | no |
+| principals | A map of commonly used role principals | `map(list(string))` | <pre>{<br>  "application-autoscaling": [<br>    "application-autoscaling.amazonaws.com",<br>    "Service"<br>  ],<br>  "cloudformation": [<br>    "cloudformation.amazonaws.com",<br>    "Service"<br>  ],<br>  "ec2": [<br>    "ec2.amazonaws.com",<br>    "Service"<br>  ],<br>  "ecs-tasks": [<br>    "ecs-tasks.amazonaws.com",<br>    "Service"<br>  ],<br>  "lambda": [<br>    "lambda.amazonaws.com",<br>    "Service"<br>  ]<br>}</pre> | no |
 
 ## Outputs
 
