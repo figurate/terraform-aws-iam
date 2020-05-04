@@ -6,7 +6,7 @@ variable "description" {
   description = "IAM role description"
 }
 
-variable "role_path" {
+variable "path" {
   description = "The path applied to the IAM role"
   default     = "/"
 }

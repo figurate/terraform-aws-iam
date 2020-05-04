@@ -11,7 +11,7 @@ data "aws_iam_policy_document" "cloudformation_assume_role_policy" {
 resource "aws_iam_role" "cloudformation" {
   name               = var.name
   description        = var.description
-  path               = var.role_path
+  path               = var.path
   assume_role_policy = data.aws_iam_policy_document.cloudformation_assume_role_policy.json
 }
 
