@@ -1,9 +1,11 @@
+data "aws_caller_identity" "current" {}
+
 data "aws_iam_policy_document" "assume_role_policy" {
   statement {
     actions = ["sts:AssumeRole"]
     principals {
-      identifiers = [var.principals[var.principal][0]]
-      type        = var.principals[var.principal][1]
+      identifiers = [local.principals[var.principal][0]]
+      type        = local.principals[var.principal][1]
     }
   }
 }
