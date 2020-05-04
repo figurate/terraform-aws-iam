@@ -16,7 +16,7 @@ resource "aws_iam_role" "cloudformation" {
 }
 
 resource "aws_iam_role_policy_attachment" "attached_policies" {
-  for_each   = var.policies
-  policy_arn = each.value
+  count      = length(var.policies)
+  policy_arn = var.policies[count.index]
   role       = aws_iam_role.cloudformation.name
 }
