@@ -20,5 +20,7 @@ No requirements.
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| role\_name | n/a |
 
