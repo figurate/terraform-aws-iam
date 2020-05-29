@@ -1,3 +1,10 @@
+/**
+ * # ![AWS](aws-logo.png) IAM Role
+ *
+ * Purpose: Provision IAM Role in AWS.
+ *
+ * Rationale: Apply standards and constraints to IAM Roles.
+ */
 data "aws_caller_identity" "current" {}
 
 data "aws_iam_policy_document" "assume_role_policy" {
