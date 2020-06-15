@@ -11,6 +11,7 @@ No provider.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | description | IAM role description | `any` | n/a | yes |
+| inline\_policies | A list of IAM policy ARNs to copy inline to the role | `list(string)` | `[]` | no |
 | name | IAM role name | `any` | n/a | yes |
 | path | The path applied to the IAM role | `string` | `"/"` | no |
 | policies | A list of IAM policy ARNs to attach to the role | `list(string)` | `[]` | no |

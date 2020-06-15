@@ -17,6 +17,11 @@ data "aws_iam_policy_document" "assume_role_policy" {
   }
 }
 
+data "aws_iam_policy" "inline_policies" {
+  count = length(var.inline_policies)
+  arn   = var.inline_policies[count.index]
+}
+
 resource "aws_iam_role" "role" {
   name               = var.name
   description        = var.description
@@ -28,4 +33,10 @@ resource "aws_iam_role_policy_attachment" "attached_policies" {
   count      = length(var.policies)
   policy_arn = var.policies[count.index]
   role       = aws_iam_role.role.name
+}
+
+resource "aws_iam_role_policy" "inline_policies" {
+  count  = length(var.inline_policies)
+  policy = data.aws_iam_policy.inline_policies[count.index].policy
+  role   = aws_iam_role.role.name
 }

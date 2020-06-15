@@ -20,3 +20,9 @@ variable "policies" {
   type        = list(string)
   default     = []
 }
+
+variable "inline_policies" {
+  description = "A list of IAM policy ARNs to copy inline to the role"
+  type        = list(string)
+  default     = []
+}
