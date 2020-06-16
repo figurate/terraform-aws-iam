@@ -15,6 +15,11 @@ variable "principal" {
   description = "Identifier for the role principal"
 }
 
+variable "permissions_boundary" {
+  description = "ARN of a permissions boundary policy"
+  default     = null
+}
+
 variable "policies" {
   description = "A list of IAM policy ARNs to attach to the role"
   type        = list(string)

@@ -22,6 +22,7 @@ No requirements.
 | inline\_policies | A list of IAM policy ARNs to copy inline to the role | `list(string)` | `[]` | no |
 | name | IAM role name | `any` | n/a | yes |
 | path | The path applied to the IAM role | `string` | `"/"` | no |
+| permissions\_boundary | ARN of a permissions boundary policy | `any` | `null` | no |
 | policies | A list of IAM policy ARNs to attach to the role | `list(string)` | `[]` | no |
 | principal | Identifier for the role principal | `any` | n/a | yes |
 

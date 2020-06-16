@@ -23,10 +23,11 @@ data "aws_iam_policy" "inline_policies" {
 }
 
 resource "aws_iam_role" "role" {
-  name               = var.name
-  description        = var.description
-  path               = var.path
-  assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
+  name                 = var.name
+  description          = var.description
+  path                 = var.path
+  assume_role_policy   = data.aws_iam_policy_document.assume_role_policy.json
+  permissions_boundary = var.permissions_boundary
 }
 
 resource "aws_iam_role_policy_attachment" "attached_policies" {
