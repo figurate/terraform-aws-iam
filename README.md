@@ -30,5 +30,6 @@ No requirements.
 
 | Name | Description |
 |------|-------------|
+| role\_arn | n/a |
 | role\_name | n/a |
 
