@@ -39,5 +39,6 @@ resource "aws_iam_role_policy_attachment" "attached_policies" {
 resource "aws_iam_role_policy" "inline_policies" {
   count  = length(var.inline_policies)
   policy = data.aws_iam_policy.inline_policies[count.index].policy
+  name   = data.aws_iam_policy.inline_policies[count.index].name
   role   = aws_iam_role.role.name
 }
