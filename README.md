@@ -25,6 +25,7 @@ No requirements.
 | permissions\_boundary | ARN of a permissions boundary policy | `any` | `null` | no |
 | policies | A list of IAM policy ARNs to attach to the role | `list(string)` | `[]` | no |
 | principal | Identifier for the role principal | `any` | n/a | yes |
+| principal\_roles | Additional IAM roles granted assume role permissions | `list(string)` | `[]` | no |
 
 ## Outputs
 

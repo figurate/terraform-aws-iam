@@ -16,6 +16,7 @@ No provider.
 | path | The path applied to the IAM role | `string` | `"/"` | no |
 | permissions\_boundary | ARN of a permissions boundary policy | `any` | `null` | no |
 | policies | A list of IAM policy ARNs to attach to the role | `list(string)` | `[]` | no |
+| principal\_roles | Additional IAM roles granted assume role permissions | `list(string)` | `[]` | no |
 
 ## Outputs
 

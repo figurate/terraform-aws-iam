@@ -17,6 +17,23 @@ data "aws_iam_policy_document" "assume_role_policy" {
   }
 }
 
+data "aws_iam_policy_document" "assume_role_policy_with_roles" {
+  statement {
+    actions = ["sts:AssumeRole"]
+    principals {
+      identifiers = [local.principals[var.principal][0]]
+      type        = local.principals[var.principal][1]
+    }
+  }
+  statement {
+    actions = ["sts:AssumeRole"]
+    principals {
+      identifiers = var.principal_roles
+      type        = "AWS"
+    }
+  }
+}
+
 data "aws_iam_policy" "inline_policies" {
   count = length(var.inline_policies)
   arn   = var.inline_policies[count.index]
@@ -26,7 +43,7 @@ resource "aws_iam_role" "role" {
   name                 = var.name
   description          = var.description
   path                 = var.path
-  assume_role_policy   = data.aws_iam_policy_document.assume_role_policy.json
+  assume_role_policy   = length(var.principal_roles) > 0 ? data.aws_iam_policy_document.assume_role_policy_with_roles.json : data.aws_iam_policy_document.assume_role_policy.json
   permissions_boundary = var.permissions_boundary
 }
 

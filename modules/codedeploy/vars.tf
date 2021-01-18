@@ -11,6 +11,12 @@ variable "path" {
   default     = "/"
 }
 
+variable "principal_roles" {
+  description = "Additional IAM roles granted assume role permissions"
+  type        = list(string)
+  default     = []
+}
+
 variable "permissions_boundary" {
   description = "ARN of a permissions boundary policy"
   default     = null
