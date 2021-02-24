@@ -13,5 +13,6 @@ locals {
     events                  = ["events.amazonaws.com", "Service"]
     lambda                  = ["lambda.amazonaws.com", "Service"]
     spotfleet               = ["spotfleet.amazonaws.com", "Service"]
+    logs                    = ["logs.amazonaws.com", "Service"]
   }
 }

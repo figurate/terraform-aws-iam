@@ -34,24 +34,16 @@ validate:
 		$(TERRAFORM) init modules/edgelambda && $(TERRAFORM) validate modules/edgelambda  && \
 		$(TERRAFORM) init modules/events && $(TERRAFORM) validate modules/events  && \
 		$(TERRAFORM) init modules/lambda && $(TERRAFORM) validate modules/lambda  && \
-		$(TERRAFORM) init modules/spotfleet && $(TERRAFORM) validate modules/spotfleet
+		$(TERRAFORM) init modules/spotfleet && $(TERRAFORM) validate modules/spotfleet && \
+		$(TERRAFORM) init modules/logs && $(TERRAFORM) validate modules/logs
 
 test: validate
-	$(CHECKOV) -d /work && \
-		$(CHECKOV) -d /work/modules/account && \
-		$(CHECKOV) -d /work/modules/application-autoscaling && \
-		$(CHECKOV) -d /work/modules/cloudformation && \
-		$(CHECKOV) -d /work/modules/codebuild && \
-		$(CHECKOV) -d /work/modules/codedeploy && \
-		$(CHECKOV) -d /work/modules/codepipeline && \
-		$(CHECKOV) -d /work/modules/ec2 && \
-		$(CHECKOV) -d /work/modules/ecs-tasks && \
-		$(CHECKOV) -d /work/modules/edgelambda && \
-		$(CHECKOV) -d /work/modules/events && \
-		$(CHECKOV) -d /work/modules/lambda && \
-		$(CHECKOV) -d /work/modules/spotfleet
+	$(CHECKOV) -d /work
 
 	$(TFSEC) /work
+
+diagram:
+	$(DIAGRAMS) diagram.py
 
 docs:
 	$(TERRAFORM_DOCS) markdown ./ >./README.md && \
@@ -66,7 +58,8 @@ docs:
 		$(TERRAFORM_DOCS) markdown ./modules/edgelambda >./modules/edgelambda/README.md  && \
 		$(TERRAFORM_DOCS) markdown ./modules/events >./modules/events/README.md  && \
 		$(TERRAFORM_DOCS) markdown ./modules/lambda >./modules/lambda/README.md  && \
-		$(TERRAFORM_DOCS) markdown ./modules/spotfleet >./modules/spotfleet/README.md
+		$(TERRAFORM_DOCS) markdown ./modules/spotfleet >./modules/spotfleet/README.md && \
+		$(TERRAFORM_DOCS) markdown ./modules/logs >./modules/logs/README.md
 
 format:
 	$(TERRAFORM) fmt -list=true ./ && \
@@ -81,4 +74,5 @@ format:
 		$(TERRAFORM) fmt -list=true ./modules/edgelambda  && \
 		$(TERRAFORM) fmt -list=true ./modules/events  && \
 		$(TERRAFORM) fmt -list=true ./modules/lambda  && \
-		$(TERRAFORM) fmt -list=true ./modules/spotfleet
+		$(TERRAFORM) fmt -list=true ./modules/spotfleet && \
+		$(TERRAFORM) fmt -list=true ./modules/logs

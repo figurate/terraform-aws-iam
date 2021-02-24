@@ -1,20 +1,10 @@
-# ![AWS](aws-logo.png) IAM Role
-
-![AWS IAM Role](aws\_iam\_role.png)
-
-Purpose: Provision IAM Role in AWS.
-
-Rationale: Apply standards and constraints to IAM Roles.
-
 ## Requirements
 
 No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| aws | n/a |
+No provider.
 
 ## Inputs
 
@@ -26,7 +16,6 @@ No requirements.
 | path | The path applied to the IAM role | `string` | `"/"` | no |
 | permissions\_boundary | ARN of a permissions boundary policy | `any` | `null` | no |
 | policies | A list of IAM policy ARNs to attach to the role | `list(string)` | `[]` | no |
-| principal | Identifier for the role principal | `any` | n/a | yes |
 | principal\_roles | Additional IAM roles granted assume role permissions | `list(string)` | `[]` | no |
 
 ## Outputs

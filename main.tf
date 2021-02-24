@@ -1,6 +1,8 @@
 /**
  * # ![AWS](aws-logo.png) IAM Role
  *
+ * ![AWS IAM Role](aws_iam_role.png)
+ *
  * Purpose: Provision IAM Role in AWS.
  *
  * Rationale: Apply standards and constraints to IAM Roles.
