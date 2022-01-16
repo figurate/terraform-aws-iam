@@ -12,19 +12,19 @@ clean:
 
 validate:
 	$(TERRAFORM) init && $(TERRAFORM) validate && \
-		$(TERRAFORM) init modules/account && $(TERRAFORM) validate modules/account  && \
-		$(TERRAFORM) init modules/application-autoscaling && $(TERRAFORM) validate modules/application-autoscaling  && \
-		$(TERRAFORM) init modules/cloudformation && $(TERRAFORM) validate modules/cloudformation  && \
-		$(TERRAFORM) init modules/codebuild && $(TERRAFORM) validate modules/codebuild  && \
-		$(TERRAFORM) init modules/codedeploy && $(TERRAFORM) validate modules/codedeploy  && \
-		$(TERRAFORM) init modules/codepipeline && $(TERRAFORM) validate modules/codepipeline  && \
-		$(TERRAFORM) init modules/ec2 && $(TERRAFORM) validate modules/ec2  && \
-		$(TERRAFORM) init modules/ecs-tasks && $(TERRAFORM) validate modules/ecs-tasks  && \
-		$(TERRAFORM) init modules/edgelambda && $(TERRAFORM) validate modules/edgelambda  && \
-		$(TERRAFORM) init modules/events && $(TERRAFORM) validate modules/events  && \
-		$(TERRAFORM) init modules/lambda && $(TERRAFORM) validate modules/lambda  && \
-		$(TERRAFORM) init modules/spotfleet && $(TERRAFORM) validate modules/spotfleet && \
-		$(TERRAFORM) init modules/logs && $(TERRAFORM) validate modules/logs
+		$(TERRAFORM) -chdir=modules/account init && $(TERRAFORM) -chdir=modules/account validate  && \
+		$(TERRAFORM) -chdir=modules/application-autoscaling init && $(TERRAFORM) -chdir=modules/application-autoscaling validate  && \
+		$(TERRAFORM) -chdir=modules/cloudformation init && $(TERRAFORM) -chdir=modules/cloudformation validate  && \
+		$(TERRAFORM) -chdir=modules/codebuild init && $(TERRAFORM) -chdir=modules/codebuild validate  && \
+		$(TERRAFORM) -chdir=modules/codedeploy init && $(TERRAFORM) -chdir=modules/codedeploy validate  && \
+		$(TERRAFORM) -chdir=modules/codepipeline init && $(TERRAFORM) -chdir=modules/codepipeline validate  && \
+		$(TERRAFORM) -chdir=modules/ec2 init && $(TERRAFORM) -chdir=modules/ec2 validate  && \
+		$(TERRAFORM) -chdir=modules/ecs-tasks init && $(TERRAFORM) -chdir=modules/ecs-tasks validate  && \
+		$(TERRAFORM) -chdir=modules/edgelambda init && $(TERRAFORM) -chdir=modules/edgelambda validate  && \
+		$(TERRAFORM) -chdir=modules/events init && $(TERRAFORM) -chdir=modules/events validate  && \
+		$(TERRAFORM) -chdir=modules/lambda init && $(TERRAFORM) -chdir=modules/lambda validate  && \
+		$(TERRAFORM) -chdir=modules/spotfleet init && $(TERRAFORM) -chdir=modules/spotfleet validate && \
+		$(TERRAFORM) -chdir=modules/logs init && $(TERRAFORM) -chdir=modules/logs validate
 
 test: validate
 	$(CHECKOV) -d /work
