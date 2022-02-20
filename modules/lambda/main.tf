@@ -8,4 +8,5 @@ module "lambda_role" {
   principal_roles      = var.principal_roles
   permissions_boundary = var.permissions_boundary
   policies             = var.policies
+  inline_policies      = var.inline_policies
 }
