@@ -2,33 +2,33 @@ SHELL:=/bin/bash
 include .env
 
 EXAMPLE=$(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
+VERSION=$(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
 
-.PHONY: all clean validate test docs format
+.PHONY: all clean validate test diagram docs format release
 
-all: validate test docs format
+all: test docs format
 
 clean:
 	rm -rf .terraform/
 
 validate:
-	$(TERRAFORM) init && $(TERRAFORM) validate && \
-		$(TERRAFORM) -chdir=modules/account init && $(TERRAFORM) -chdir=modules/account validate  && \
-		$(TERRAFORM) -chdir=modules/application-autoscaling init && $(TERRAFORM) -chdir=modules/application-autoscaling validate  && \
-		$(TERRAFORM) -chdir=modules/cloudformation init && $(TERRAFORM) -chdir=modules/cloudformation validate  && \
-		$(TERRAFORM) -chdir=modules/codebuild init && $(TERRAFORM) -chdir=modules/codebuild validate  && \
-		$(TERRAFORM) -chdir=modules/codedeploy init && $(TERRAFORM) -chdir=modules/codedeploy validate  && \
-		$(TERRAFORM) -chdir=modules/codepipeline init && $(TERRAFORM) -chdir=modules/codepipeline validate  && \
-		$(TERRAFORM) -chdir=modules/ec2 init && $(TERRAFORM) -chdir=modules/ec2 validate  && \
-		$(TERRAFORM) -chdir=modules/ecs-tasks init && $(TERRAFORM) -chdir=modules/ecs-tasks validate  && \
-		$(TERRAFORM) -chdir=modules/edgelambda init && $(TERRAFORM) -chdir=modules/edgelambda validate  && \
-		$(TERRAFORM) -chdir=modules/events init && $(TERRAFORM) -chdir=modules/events validate  && \
-		$(TERRAFORM) -chdir=modules/lambda init && $(TERRAFORM) -chdir=modules/lambda validate  && \
-		$(TERRAFORM) -chdir=modules/spotfleet init && $(TERRAFORM) -chdir=modules/spotfleet validate && \
-		$(TERRAFORM) -chdir=modules/logs init && $(TERRAFORM) -chdir=modules/logs validate
+	$(TERRAFORM) init -upgrade && $(TERRAFORM) validate && \
+		$(TERRAFORM) -chdir=modules/account init -upgrade && $(TERRAFORM) -chdir=modules/account validate  && \
+		$(TERRAFORM) -chdir=modules/application-autoscaling init -upgrade && $(TERRAFORM) -chdir=modules/application-autoscaling validate  && \
+		$(TERRAFORM) -chdir=modules/cloudformation init -upgrade && $(TERRAFORM) -chdir=modules/cloudformation validate  && \
+		$(TERRAFORM) -chdir=modules/codebuild init -upgrade && $(TERRAFORM) -chdir=modules/codebuild validate  && \
+		$(TERRAFORM) -chdir=modules/codedeploy init -upgrade && $(TERRAFORM) -chdir=modules/codedeploy validate  && \
+		$(TERRAFORM) -chdir=modules/codepipeline init -upgrade && $(TERRAFORM) -chdir=modules/codepipeline validate  && \
+		$(TERRAFORM) -chdir=modules/ec2 init -upgrade && $(TERRAFORM) -chdir=modules/ec2 validate  && \
+		$(TERRAFORM) -chdir=modules/ecs-tasks init -upgrade && $(TERRAFORM) -chdir=modules/ecs-tasks validate  && \
+		$(TERRAFORM) -chdir=modules/edgelambda init -upgrade && $(TERRAFORM) -chdir=modules/edgelambda validate  && \
+		$(TERRAFORM) -chdir=modules/events init -upgrade && $(TERRAFORM) -chdir=modules/events validate  && \
+		$(TERRAFORM) -chdir=modules/lambda init -upgrade && $(TERRAFORM) -chdir=modules/lambda validate  && \
+		$(TERRAFORM) -chdir=modules/spotfleet init -upgrade && $(TERRAFORM) -chdir=modules/spotfleet validate && \
+		$(TERRAFORM) -chdir=modules/logs init -upgrade && $(TERRAFORM) -chdir=modules/logs validate
 
 test: validate
 	$(CHECKOV) -d /work
-
 	$(TFSEC) /work
 
 diagram:
@@ -65,3 +65,6 @@ format:
 		$(TERRAFORM) fmt -list=true ./modules/lambda  && \
 		$(TERRAFORM) fmt -list=true ./modules/spotfleet && \
 		$(TERRAFORM) fmt -list=true ./modules/logs
+
+release: test
+	git tag $(VERSION) && git push --tags
