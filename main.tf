@@ -1,6 +1,9 @@
 /**
  * # ![AWS](aws-logo.png) IAM Role
  *
+ * [![CI](https://github.com/figurate/terraform-aws-iam-role/actions/workflows/main.yml/badge.svg)](https://github.com/figurate/terraform-aws-iam-role/actions/workflows/main.yml)
+ *
+ *
  * ![AWS IAM Role](aws_iam_role.png)
  *
  * Purpose: Provision IAM Role in AWS.
